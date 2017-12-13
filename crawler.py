@@ -9,6 +9,7 @@ import cv2
 
 __author__ = "Ruofei Du"
 
+
 class Paras:
     section = "DuCrawler"
     save_folder = "Results"
@@ -104,7 +105,7 @@ def search_google(key, depth=50):
                 except Exception as e:
                     try:
                         os.remove(file_name)
-                    except Exception as e:
+                    except Exception:
                         pass
                     log.write("# %s\t%s\n" % (e, link))
                 else:
@@ -148,7 +149,7 @@ if __name__ == "__main__":
     with open(Paras.keywords_file, "r") as f:
         keywords = f.readlines()
     for k in keywords:
-        if k[0] == '#':
+        if k[0] == '#' or len(k) == 0:
             continue
         t = time.time()
         search_google(k.strip())
