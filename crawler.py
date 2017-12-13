@@ -149,7 +149,7 @@ if __name__ == "__main__":
     with open(Paras.keywords_file, "r") as f:
         keywords = f.readlines()
     for k in keywords:
-        if k[0] == '#' or len(k) == 0:
+        if k[0] == '#' or len(k.strip()) == 0:
             continue
         t = time.time()
         search_google(k.strip())
