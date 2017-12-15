@@ -21,7 +21,7 @@ re_images = re.compile('mediaurl=(.*?)&amp;')
 
 
 class Paras:
-    section = "DuCrawler"
+    section = "Bing"
     save_folder = "Results"
     keywords_file = "%s.txt" % save_folder
     suffix = ""
@@ -162,7 +162,7 @@ def test_average_color():
 
 if __name__ == "__main__":
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read("config_bing.ini")
     Paras.keywords_file = config.get(Paras.section, "keywords_file").strip()
     Paras.suffix = config.get(Paras.section, "suffix").strip()
     if Paras.suffix:
@@ -176,9 +176,9 @@ if __name__ == "__main__":
     Paras.header['User-Agent'] = config.get(Paras.section, "header").strip()
     Paras.min_average_illuminance = config.get(Paras.section, "min_average_illuminance")
     Paras.min_rgb_difference = config.get(Paras.section, "min_rgb_difference")
-    Paras.scroll_times = config.getint(Paras.scroll_times, "scroll_times")
-    Paras.scroll_pause_time = config.getfloat(Paras.scroll_pause_time, "scroll_pause_time")
-    Paras.init_pause_time = config.getfloat(Paras.init_pause_time, "init_pause_time")
+    Paras.scroll_times = config.getint(Paras.section, "scroll_times")
+    Paras.scroll_pause_time = config.getfloat(Paras.section, "scroll_pause_time")
+    Paras.init_pause_time = config.getfloat(Paras.section, "init_pause_time")
 
     print(Paras.keywords_file, Paras.suffix, Paras.save_folder)
 

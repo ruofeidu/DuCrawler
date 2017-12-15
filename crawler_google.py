@@ -11,7 +11,7 @@ __author__ = "Ruofei Du"
 
 
 class Paras:
-    section = "DuCrawler"
+    section = "Google"
     save_folder = "Results"
     keywords_file = "%s.txt" % save_folder
     suffix = ""
@@ -37,7 +37,7 @@ def search_google(key, depth=50):
     image_list, url_dict, url_list = [], {}, []
 
     root_dir = Paras.save_folder
-    prefix = "image"
+    prefix = "google"
     if not os.path.exists(root_dir):
         os.mkdir(root_dir)
     dir = os.path.join(root_dir, key)
@@ -129,7 +129,7 @@ def test_average_color():
 
 if __name__ == "__main__":
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read("config_google.ini")
     Paras.keywords_file = config.get(Paras.section, "keywords_file").strip()
     Paras.suffix = config.get(Paras.section, "suffix").strip()
     if Paras.suffix:
