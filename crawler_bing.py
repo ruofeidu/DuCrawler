@@ -51,7 +51,7 @@ def search_bing(key, depth=50):
     image_list, url_dict, url_list = [], {}, []
 
     root_dir = Paras.save_folder
-    prefix = "image"
+    prefix = "bing"
     if not os.path.exists(root_dir):
         os.mkdir(root_dir)
     dir = os.path.join(root_dir, key)

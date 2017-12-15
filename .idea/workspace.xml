@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e31fc59-991b-443a-ab03-31fcd26498d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawler_bing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.ini" afterPath="$PROJECT_DIR$/config.ini" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/crawler.py" afterPath="$PROJECT_DIR$/crawler_google.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawler_bing.py" afterPath="$PROJECT_DIR$/crawler_bing.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="crawler_bing.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawler_bing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="174" column="60" lean-forward="false" selection-start-line="174" selection-start-column="60" selection-end-line="174" selection-end-column="60" />
+            <state relative-caret-position="300">
+              <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
               <folding>
                 <element signature="e#24#61#0" expanded="true" />
               </folding>
@@ -74,6 +70,7 @@
       <find>suffix</find>
       <find>images</find>
       <find>image</find>
+      <find>image_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,8 +83,8 @@
         <option value="$PROJECT_DIR$/crawler.py" />
         <option value="$PROJECT_DIR$/crawler_google.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/crawler_bing.py" />
         <option value="$PROJECT_DIR$/config.ini" />
+        <option value="$PROJECT_DIR$/crawler_bing.py" />
       </list>
     </option>
   </component>
@@ -382,8 +379,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crawler_bing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="174" column="60" lean-forward="false" selection-start-line="174" selection-start-column="60" selection-end-line="174" selection-end-column="60" />
+        <state relative-caret-position="300">
+          <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
           </folding>
