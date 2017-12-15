@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e31fc59-991b-443a-ab03-31fcd26498d8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawler_bing.py" afterPath="$PROJECT_DIR$/crawler_bing.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="crawler_bing.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawler_bing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+            <state relative-caret-position="187">
+              <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="17" />
               <folding>
                 <element signature="e#24#61#0" expanded="true" />
               </folding>
@@ -39,8 +38,8 @@
       <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+            <state relative-caret-position="102">
+              <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -72,6 +71,7 @@
       <find>images</find>
       <find>image</find>
       <find>image_</find>
+      <find>prefix</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -372,16 +372,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+        <state relative-caret-position="102">
+          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crawler_bing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        <state relative-caret-position="187">
+          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="17" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
           </folding>

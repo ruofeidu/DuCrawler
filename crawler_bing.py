@@ -2,9 +2,9 @@
 from __future__ import print_function
 import re
 try:
-    from urllib.parse import urlparse
+    from urllib.parse import unquote
 except ImportError:
-     from urlparse import urlparse
+     from urlparse import unquote
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import configparser
@@ -46,7 +46,7 @@ def abs_sum(c):
     return abs(c[0] - c[1]) + abs(c[0] - c[2]) + abs(c[1] - c[2])
 
 
-def search_bing(key, depth=50):
+def search_bing(key, depth=3):
     image_list, url_dict, url_list = [], {}, []
 
     root_dir = Paras.save_folder
@@ -100,14 +100,13 @@ def search_bing(key, depth=50):
                 ext = image_url[p+1:]
             else:
                 continue
-            image_url = urllib.parse.unquote(image_url)
+            image_url = unquote(image_url)
             image_list.append((image_url, ext))
 
         counter = 0
         for (link, ext) in image_list:
             if link in url_dict:
                 continue
-            print(image_url)
             url_dict[link] = True
             link_file.write("%s\n" % link)
             link_file.flush()
