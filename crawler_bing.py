@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-import requests
-import re, io
-import urllib.parse
-from requests.exceptions import RequestException
-import json
+import re
+try:
+    from urllib.parse import urlparse
+except ImportError:
+     from urlparse import urlparse
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import configparser
 import requests
-import json
 import os
 import time
 import cv2

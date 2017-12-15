@@ -10,8 +10,10 @@ My crawler to mine image from Google and Bing image search
 
 ## Additional dependencies of crawler_bing
 * pip install -U selenium
-* see <https://pypi.python.org/pypi/selenium>
-* PhantomJS 2.1.1 <https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-windows.zip>
+* see [Selenium](https://pypi.python.org/pypi/selenium)
+* [PhantomJS 2.1.1](http://phantomjs.org/download.html)
+* pip3.6 install urllib
+* or pip2.7 install urlparse
 
 ## Author
 [Ruofei Du](http://duruofei.com)
