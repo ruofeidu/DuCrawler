@@ -46,20 +46,21 @@ def abs_sum(c):
     return abs(c[0] - c[1]) + abs(c[0] - c[2]) + abs(c[1] - c[2])
 
 
-def search_bing(key, depth=3):
+def search_bing(key, key_id = -1, depth = 3):
     image_list, url_dict, url_list = [], {}, []
 
     root_dir = Paras.save_folder
     prefix = "bing"
     if not os.path.exists(root_dir):
         os.mkdir(root_dir)
-    dir = os.path.join(root_dir, key)
+    key = key.replace(",", "_")
+    dir = os.path.join(root_dir, "%d_%s" % (key_id, key))
+    key = key.replace("_", " ")
     if not os.path.exists(dir):
         os.mkdir(dir)
-    file_name = os.path.join(dir, "_log.txt")
+    file_name = os.path.join(dir, "%s_log.txt" % prefix)
     log = open(file_name, "a+")
-
-    file_name = os.path.join(dir, "_urls.txt")
+    file_name = os.path.join(dir, "%s_urls.txt" % prefix)
     try:
         with open(file_name, "r") as f:
             url_list = f.readlines()
@@ -146,18 +147,13 @@ def search_bing(key, depth=3):
                         print(counter)
                     log.write("%d\t%s\n" % (counter, link))
             log.flush()
+            if counter > Paras.max_counter:
+                break
         if counter > Paras.max_counter:
             break
     log.close()
     link_file.close()
     pass
-
-
-def test_average_color():
-    img = cv2.imread("Google\\Tropical Flower Coloring Pages\\image14.jpg")
-    average_color = [img[:, :, i].mean() for i in range(img.shape[-1])]
-    print(average_color)
-    print(img.shape)
 
 
 if __name__ == "__main__":
@@ -184,10 +180,10 @@ if __name__ == "__main__":
 
     with open(Paras.keywords_file, "r") as f:
         keywords = f.readlines()
-    for k in keywords:
+    for i, k in enumerate(keywords):
         if k[0] == '#' or len(k.strip()) == 0:
             continue
         t = time.time()
-        search_bing(k.strip())
+        search_bing(k.strip(), key_id = i)
         print(time.time() - t)
         break
