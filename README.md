@@ -1,7 +1,9 @@
 # DuCrawler
+
 My crawler to mine image from Google and Bing image search
 
 ## Dependencies of crawler_google
+
 * Python 2.7 / 3.6, compatiable with python 3.0+
 * pip install bs4
 * pip install requests
@@ -9,19 +11,22 @@ My crawler to mine image from Google and Bing image search
 * pip2.7 install configparser
 
 ## Additional dependencies of crawler_bing
-* pip install -U selenium
+
+// pip install -U selenium
+
+* pip install selenium==2.48.0
 * see [Selenium](https://pypi.python.org/pypi/selenium)
 * [PhantomJS 2.1.1](http://phantomjs.org/download.html)
 * pip3.6 install urllib
 * or pip2.7 install urlparse
 
 ## Author
+
 [Ruofei Du](http://duruofei.com)
 
-
 ## References
-[Writing Python 2-3 compatible code](http://python-future.org/compatible_idioms.html#unicode)
 
+[Writing Python 2-3 compatible code](http://python-future.org/compatible_idioms.html#unicode)
 
 ## License
 
@@ -29,5 +34,5 @@ Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License with 996 ICU c
 
 The above license is only granted to entities that act in concordance with local labor laws. In addition, the following requirements must be observed:
 
-- The licensee must not, explicitly or implicitly, request or schedule their employees to work more than 45 hours in any single week.
-- The licensee must not, explicitly or implicitly, request or schedule their employees to be at work consecutively for 10 hours.
+* The licensee must not, explicitly or implicitly, request or schedule their employees to work more than 45 hours in any single week.
+* The licensee must not, explicitly or implicitly, request or schedule their employees to be at work consecutively for 10 hours.

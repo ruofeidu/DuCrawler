@@ -1,17 +1,26 @@
+# -*- coding: utf-8 -*-
 from __future__ import print_function
+import re
+try:
+  from urllib.parse import unquote
+except ImportError:
+  from urlparse import unquote
 from bs4 import BeautifulSoup
+from selenium import webdriver
 import configparser
 import requests
-import json
 import os
 import time
 import cv2
 
 __author__ = "Ruofei Du"
 
+browser = webdriver.PhantomJS()
+re_images = re.compile('mediaurl=(.*?)&amp;')
+
 
 class Paras:
-  section = "Google"
+  section = "Bing"
   save_folder = "Results"
   keywords_file = "%s.txt" % save_folder
   suffix = ""
@@ -23,6 +32,8 @@ class Paras:
   min_average_illuminance = 100
   min_rgb_difference = 30
   header = {}
+  scroll_times = 5
+  scroll_pause_time = 0.5
 
 
 def get_soup(url, header):
@@ -33,11 +44,11 @@ def abs_sum(c):
   return abs(c[0] - c[1]) + abs(c[0] - c[2]) + abs(c[1] - c[2])
 
 
-def search_google(key, depth=50):
+def search_bing(key, depth=3):
   image_list, url_dict, url_list = [], {}, []
 
   root_dir = Paras.save_folder
-  prefix = "google"
+  prefix = "bing"
   if not os.path.exists(root_dir):
     os.mkdir(root_dir)
   dir = os.path.join(root_dir, key)
@@ -60,17 +71,39 @@ def search_google(key, depth=50):
     query = key + Paras.suffix
     query = query + " " + str(page_id) if page_id > 0 else query
     query = '+'.join(query.split())
-    url = "https://www.google.co.in/search?q=" + query + "&source=lnms&tbm=isch"
+    url = "https://www.bing.com/images/search?q=" + query + "&FORM=HDRSC2"
     print(url)
-    soup = get_soup(url, Paras.header)
-    for a in soup.find_all("div", {"class": "rg_meta"}):
-      link, ext = json.loads(a.text)["ou"], json.loads(a.text)["ity"]
-      image_list.append((link, ext))
-    counter = 0
+    browser.get(url)
+    browser.implicitly_wait(1)
 
+    # Get scroll height
+    last_height = browser.execute_script("return document.body.scrollHeight")
+
+    for i in range(Paras.scroll_times):
+      # Scroll down to bottom
+      browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+      # Wait to load page
+      time.sleep(Paras.scroll_pause_time)
+      # Calculate new scroll height and compare with last scroll height
+      new_height = browser.execute_script("return document.body.scrollHeight")
+      if new_height == last_height:
+        break
+      last_height = new_height
+
+    html = browser.page_source
+    matches = re_images.findall(html)
+    for image_url in matches:
+      p = image_url.rfind(".")
+      if p >= len(image_url) - 5:
+        ext = image_url[p + 1:]
+      else:
+        continue
+      image_url = unquote(image_url)
+      image_list.append((image_url, ext))
+
+    counter = 0
     for (link, ext) in image_list:
       if link in url_dict:
-        # log.write("Repeated link\n")
         continue
       url_dict[link] = True
       link_file.write("%s\n" % link)
@@ -79,8 +112,6 @@ def search_google(key, depth=50):
         req = requests.get(link, headers=Paras.header, timeout=Paras.timeout)
         if req.status_code == 200:
           counter = len([s for s in os.listdir(dir) if prefix in s]) + 1
-          if not ext:
-            ext = "jpg"
           file_name = os.path.join(dir, prefix + str(counter) + "." + ext)
           with open(file_name, "wb") as f:
             f.write(req.content)
@@ -131,7 +162,7 @@ def test_average_color():
 
 if __name__ == "__main__":
   config = configparser.ConfigParser()
-  config.read("config_google.ini")
+  config.read("config_bing1.ini")
   Paras.keywords_file = config.get(Paras.section, "keywords_file").strip()
   Paras.suffix = config.get(Paras.section, "suffix").strip()
   if Paras.suffix:
@@ -148,6 +179,9 @@ if __name__ == "__main__":
   Paras.min_average_illuminance = config.get(Paras.section,
                                              "min_average_illuminance")
   Paras.min_rgb_difference = config.get(Paras.section, "min_rgb_difference")
+  Paras.scroll_times = config.getint(Paras.section, "scroll_times")
+  Paras.scroll_pause_time = config.getfloat(Paras.section, "scroll_pause_time")
+  Paras.init_pause_time = config.getfloat(Paras.section, "init_pause_time")
 
   print(Paras.keywords_file, Paras.suffix, Paras.save_folder)
 
@@ -157,5 +191,6 @@ if __name__ == "__main__":
     if k[0] == '#' or len(k.strip()) == 0:
       continue
     t = time.time()
-    search_google(k.strip())
+    search_bing(k.strip())
     print(time.time() - t)
+    break

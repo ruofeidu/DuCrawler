@@ -16,7 +16,7 @@ class Paras:
   keywords_file = "%s.txt" % save_folder
   suffix = ""
   remove_color_images = False
-  max_counter = 1000
+  max_counter = 1
   file_min_size = 1000
   timeout = 0.5
   valid_using_opencv = False
@@ -33,7 +33,7 @@ def abs_sum(c):
   return abs(c[0] - c[1]) + abs(c[0] - c[2]) + abs(c[1] - c[2])
 
 
-def search_google(key, depth=50):
+def search_google(key, depth=1):
   image_list, url_dict, url_list = [], {}, []
 
   root_dir = Paras.save_folder
@@ -60,13 +60,22 @@ def search_google(key, depth=50):
     query = key + Paras.suffix
     query = query + " " + str(page_id) if page_id > 0 else query
     query = '+'.join(query.split())
-    url = "https://www.google.co.in/search?q=" + query + "&source=lnms&tbm=isch"
-    print(url)
+    url = "https://www.google.com/search?q=" + query + "&source=lnms&tbm=isch"
+    print("Crawling " + url)
     soup = get_soup(url, Paras.header)
-    for a in soup.find_all("div", {"class": "rg_meta"}):
-      link, ext = json.loads(a.text)["ou"], json.loads(a.text)["ity"]
-      image_list.append((link, ext))
+
+    with open('debug/page.html', 'w') as f:
+      f.write(soup.prettify(formatter="html"))
+
+    with open('debug/imgs.txt', 'w') as f:
+      # for a in soup.find_all("div", {"class": "IkMU6e"}):
+      for element in soup.findAll("img", {"class": "yWs4tf"}):
+        f.write(str(element['src']) + '\n')
+        # link, ext = json.loads(a.text)["ou"], json.loads(a.text)["ity"]
+        image_list.append((element['src'], 'jfif'))
     counter = 0
+
+    print(image_list)
 
     for (link, ext) in image_list:
       if link in url_dict:
@@ -131,7 +140,7 @@ def test_average_color():
 
 if __name__ == "__main__":
   config = configparser.ConfigParser()
-  config.read("config_google.ini")
+  config.read("config_google1.ini")
   Paras.keywords_file = config.get(Paras.section, "keywords_file").strip()
   Paras.suffix = config.get(Paras.section, "suffix").strip()
   if Paras.suffix:
